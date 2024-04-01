@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<h1>
+    Welcome to the home page
+</h1>
+
+<div>
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'create-blog' %}">Create Blog</a>
+    {% endif %}
+    <hr>
+    <div>
+        {% for blog in blogs %}
+        {% if request.user == blog.author %}
+        <a href="{% url 'update-blog' blog.id %}">Edit</a>
+        <a href="{% url 'delete-blog' blog.id %}">Delete</a>
+        {% endif %}
+        <a href="{% url 'profile' blog.author.id %}"><small>@{{ blog.author.username }}</small></a>
+        <h3>
+            {{ blog.id }} -- <a href="{% url 'blog' blog.id %}">{{ blog.title }}</a>
+        </h3>
+        <span>{{ blog.topic.name }}</span>
+        <hr>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

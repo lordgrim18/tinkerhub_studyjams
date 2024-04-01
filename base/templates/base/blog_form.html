@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div>
+            <label for="blog_title">Title</label>
+            {{ form.title }}
+        </div>
+        <div>
+            <label for="blog_body">Content</label>
+            {{ form.body }}
+        </div>
+        <div>
+            <label for="blog_topic">Topic</label>
+            {{ form.topic }}
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+
+{% endblock %}
